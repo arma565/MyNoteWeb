@@ -1,0 +1,19 @@
+﻿.welcome-title {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+}
+
+p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #555;
+}

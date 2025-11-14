@@ -1,0 +1,65 @@
+
+.note{
+    align-content: center;
+    align-items: center;
+    display: flex;
+}
+
+menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    width: max-content;
+    height: fit-content;
+    color: black;
+    display: inline-flex;
+}
+
+.menu{
+    width: max-content;
+    height: max-content;
+    align-content: center;
+    align-items: center;
+    position: sticky;
+    right: 0rem;
+    left: 150rem;
+}
+
+li.save{
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+li.clear{
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.form-note{
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    top: 25rem;
+    right: 70rem;
+    left: 60rem;
+}
+
+.title{
+    width: 30rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+
+.description{
+    width: 30rem;
+    height: 8rem;
+    border-radius: 0.5rem;
+    position: relative;
+    top: 2rem;
+}
+
