@@ -44,7 +44,7 @@ namespace Note.Controllers
 
             if (!searchString.IsNullOrEmpty())
                 notesQuery = notesQuery.Where(n => n.Title!.ToUpper().Contains(searchString.ToUpper()));
-
+            
             var noteViewModel = new NoteViewModel{
                 Notes = notesQuery.ToList()
             };

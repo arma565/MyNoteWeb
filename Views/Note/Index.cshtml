@@ -4,17 +4,20 @@
 }
 
 <div class="search-container">
-    <form asp-controller="Note" asp-action="Index" method="get">
-        <label>
-            Title:
-            <input name="search" type="text" asp-for="SearchString"
-                   class="search-box"
-                   placeholder="Search&#x2026;"
-                   autocomplete="off"
-                   maxlength="240"
-                   aria-label="Search" />
-        </label>
-        <input class="search-btn" type="submit" value="Search">
+    <form id="searchForm" asp-controller="Note" asp-action="Index" method="get">
+        <p>
+            <label>
+                Title:
+                <input type="text" asp-for="SearchString"
+                       id="searchInput"
+                       class="search-box"
+                       placeholder="Search&#x2026;"
+                       autocomplete="off"
+                       maxlength="240"
+                       aria-label="Search" />
+            </label>
+            <input class="search-btn" type="submit" value="Search">
+        </p>
     </form>
     <a id="create" asp-action="Create">Create</a>
 </div>
@@ -39,12 +42,62 @@
                     @note.Title
                 </td>
                 <td class="tbl-actions-column">
-                    <a asp-controller"Note" asp-action="Details" asp-route-id="@note.Id">Details</a>
-                    <a asp-controller"Note" asp-action="Edit" asp-route-id="@note.Id">Edit</a>
-                    <a asp-controller"Note" asp-action="Delete" asp-route-id="@note.Id">Delete</a>
+                    <a asp-controller="Note" asp-action="Details" asp-route-id="@note.Id">Details</a>
+                    <a asp-controller="Note" asp-action="Edit" asp-route-id="@note.Id">Edit</a>
+                    <a asp-controller="Note" asp-action="Delete" asp-route-id="@note.Id">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('searchForm');
+        const input = document.getElementById('searchInput');
+        const inputName = 'SearchString';
+
+        if (!form || !input) return;
+
+        function ensureName() {
+                    if (!input.hasAttribute('name')) {
+            input.setAttribute('name', inputName);
+                    }
+                }
+
+        function removeName() {
+                    if (input.hasAttribute('name')) {
+            input.removeAttribute('name');
+                    }
+                }
+
+        if (typeof input.value === 'string' && input.value.trim() === '') {
+            input.value = '';
+        removeName();
+                }
+
+        input.addEventListener('input', function () {
+                    if (input.value.trim() === '') {
+            input.value = '';
+        removeName();
+        input.focus();
+        form.submit();
+                    } else
+        ensureName();
+                }, false);
+
+        form.addEventListener('submit', function () {
+                    const val = (input.value || '').trim();
+        if (val === '') {
+            input.value = '';
+        removeName();
+                    } else {
+            input.value = val;
+        ensureName();
+                    }
+                }, false);
+            }, false);
+    </script>
+}
