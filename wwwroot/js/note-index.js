@@ -1,46 +1,46 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('searchForm');
-    const input = document.getElementById('searchInput');
+$(function () {
+    const form = $('#searchForm');
+    const input = $('#searchInput');
     const inputName = 'SearchString';
 
-    if (!form || !input) return;
+    if (!form.length || !input.length) return;
 
     function ensureName() {
-        if (!input.hasAttribute('name')) {
-            input.setAttribute('name', inputName);
+        if (!input.attr('name')) {
+            input.attr('name', inputName);
         }
     }
 
     function removeName() {
-        if (input.hasAttribute('name')) {
-            input.removeAttribute('name');
+        if (input.attr('name')) {
+            input.removeAttr('name');
         }
     }
 
-    if (typeof input.value === 'string' && input.value.trim() === '') {
-        input.value = '';
+    if (typeof input.val() === 'string' && input.val().trim() === '') {
+        input.val('');
         removeName();
     }
 
-    input.addEventListener('input', function () {
-        if (input.value.trim() === '') {
-            input.value = '';
+    input.on('input', function () {
+        if (input.val().trim() === '') {
+            input.val('');
             removeName();
-            input.focus();
-            form.submit();
+            input.trigger('focus');
+            form.trigger('submit');
         } else {
             ensureName();
         }
-    }, false);
+    });
 
-    form.addEventListener('submit', function () {
-        const val = (input.value || '').trim();
+    form.on('submit', function () {
+        const val = (input.val() || '').trim();
         if (val === '') {
-            input.value = '';
+            input.val('');
             removeName();
         } else {
-            input.value = val;
+            input.val(val);
             ensureName();
         }
-    }, false);
-}, false);
+    });
+});
