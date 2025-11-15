@@ -55,3 +55,10 @@ th, td {
     padding: 8px;
     vertical-align: middle;
 }
+.head-tbl-row {
+    border-bottom: 1px solid #ccc;
+}
+
+.body-tbl-row {
+    border-bottom: 1px solid #ccc;
+}
